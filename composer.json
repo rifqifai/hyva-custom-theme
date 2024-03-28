@@ -1,0 +1,39 @@
+
+{
+    "name": "rifqifai/hyva-custom-theme",
+    "type": "magento2-module",
+    "authors": [{
+            "name": "rifqifai",
+            "email": "rifqi.fauzi@sirclo.com"
+        }
+    ],
+    "description": "Hyva Custom Theme",
+    "homepage": "https://github.com/rifqifai/hyva-custom-theme",
+    "keywords": [
+        "magento",
+        "magento2"
+    ],
+    "minimum-stability": "dev",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "version": "1.0.0",
+    "require": {
+        "giggsey/libphonenumber-for-php": "^8.12"
+    },
+    "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    },
+    "autoload": {
+        "files": [
+            "src/theme-frontend-custom-hyva/registration.php"
+        ],
+        "psr-4": {
+        }
+    }
+}
+
