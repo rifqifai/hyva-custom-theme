@@ -1,0 +1,69 @@
+@import "theme/components/footer.css";
+@import "theme/components/header.css";
+@import "theme/components/page.css";
+@import "theme/components/category.css";
+@import "theme/components/customer.css";
+@import "theme/components/recaptcha.css";
+@import "theme/components/sales.css";
+@import "theme/components/style/forms.css";
+@import "theme/components/style/layout.css";
+@import "custom/trackorder.css";
+@import "custom/wishlist.css";
+@import "custom/category.css";
+@import "custom/pdp.css";
+@import "custom/myaccount.css";
+@import "custom/blog.css";
+@import "custom/city.css";
+@import "custom/typography.css";
+@import "custom/product-list.css";
+@import "custom/swift-homepage.css";
+@import "custom/header.css";
+@import "custom/cart.css";
+@import "custom/customer-forms.css";
+@import "custom/login.css";
+@import "custom/register.css";
+@import "custom/forgot-password.css";
+@import "custom/pdp-mobile-social-share.css";
+@import "custom/general.css";
+
+body {
+    @apply text-neutral;
+}
+
+.loader-wrapper {
+    @apply absolute bg-[rgba(255,255,255,.5)] inset-0 flex items-center justify-center z-[1];
+}
+
+.loader {
+    @apply w-10 h-10 animate-[spin_1s_linear_infinite] rounded-[50%]
+    border-t-primary border-[5px] border-solid border-[rgba(0,0,0,.15)];
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+}
+
+.breadcrumbs ol > li:last-child > span:last-child {
+    @apply overflow-hidden break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.breadcrumbs ol > li > a {
+    @apply whitespace-nowrap;
+}
+
+.scrollbar-none {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

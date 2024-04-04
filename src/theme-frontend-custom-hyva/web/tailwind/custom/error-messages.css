@@ -1,0 +1,3 @@
+.field-error .messages {
+    @apply mt-2;
+}

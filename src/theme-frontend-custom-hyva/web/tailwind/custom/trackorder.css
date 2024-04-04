@@ -1,0 +1,28 @@
+.account .order-details-items .order-links {
+    @apply -mb-px;
+}
+
+.account .order-details-items .order-links li {
+    @apply bg-[rgba(0,0,0,0.015)] shadow-none border
+    border-b-transparent border-solid border-[#d6d6d6];
+}
+
+.account .order-details-items .order-links li:first-child {
+    @apply rounded-tl-sm;
+}
+
+.account .order-details-items .order-links li:last-child {
+    @apply rounded-tr-sm;
+}
+
+.account .order-details-items .order-links li+li {
+    @apply border-l-transparent;
+}
+
+.account .order-details-items .order-links li a {
+    @apply no-underline;
+}
+
+.account .order-details-items .order-links li.current {
+    @apply bg-white border-b-white border-b border-solid;
+}

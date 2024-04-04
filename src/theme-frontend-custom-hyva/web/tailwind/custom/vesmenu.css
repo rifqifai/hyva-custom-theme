@@ -1,0 +1,326 @@
+.ves-megamenu.top-navigation {
+    @apply w-full;
+}
+.navigation .level0 .submenu {
+    @apply font-semibold;
+}
+.ves-megamenu .navigation .level0 .submenu .mega-col > .nav-item > a {
+    @apply text-left;
+}
+.ves-megamenu.top-navigation .navigation .level0 > a {
+    @apply font-semibold text-[15px] text-black;
+}
+.top-navigation .navigation>ul {
+    @apply text-left;
+}
+.ves-megamenu .navigation .level0 .submenu .submenu-inner .content-wrapper {
+    @apply flex gap-5 px-0 py-0;
+}
+.ves-megamenu .navigation .level1 .submenu .submenu-inner .content-wrapper {
+    @apply flex gap-5 px-5 py-0;
+}
+
+/* screen md */
+@screen md {
+    .product-highlight .swatch-attribute .swatch-attribute-options .swatch-option {
+        @apply min-w-[45px];
+    }
+
+    .product-highlight .product-item-actions > button.btn-primary {
+        @apply px-[16px];
+    }
+
+    .ves-megamenu .navigation .nav-item.level0>a>span, 
+    .ves-megamenu .navigation .content-type-parentcart .level1>a>span {
+        @apply block;
+    }
+
+    .ves-megamenu li[id*="vesitem-"].nav-item:hover > a {
+        @apply bg-primary-100;
+    }
+    li[id*="vesitem-"].nav-item > .submenu .nav-item:hover a {}
+    .ves-megamenu .navigation {
+        @apply max-w-full;
+    }
+
+    li[id*=vesitem-].nav-item:hover>.submenu,
+    li[id*=vesitem-].nav-item:hover>.submenu .dropdown-submenu:hover>.submenu {
+        @apply block ;
+    }
+
+    .ves-megamenu .navigation .level0 .submenu .mega-col > .nav-item > a {
+        @apply font-semibold uppercase text-black;
+
+        &:hover,
+        &.ui-state-focus {
+            @apply bg-primary-100;
+        }
+    }
+
+    .ves-megamenu.top-navigation .navigation .level0 > a {
+        @apply px-[20px] py-0;
+    }
+
+    .ves-megamenu.top-navigation .navigation .level0 > a.active {
+        @apply bg-primary text-white;
+    }
+
+    .ves-megamenu .navigation .level0 .submenu .mega-col > .nav-item.level1 > a.active {
+        @apply bg-primary text-white;
+    }
+
+    .sticky-header {
+        @apply fixed shadow-[0_20px_30px_0_rgba(0,0,0,0.05)] top-0;
+    }
+}
+
+@screen md-max {
+    .show-section {
+        @apply block !important;
+    }
+
+    .vesmega-sidebar.mobile-active {
+        @apply w-full bg-white;
+    }
+
+    .vesmega-sidebar.mobile-active .mobile-active-bg {
+        @apply h-screen w-full bg-white;
+    }
+
+    .vesmega-sidebar .menu-close {
+        @apply top-0;
+    }
+
+    .vesmega-sidebar.mobile-active .menu-icon {
+        @apply mt-0;
+    }
+
+    .vesmega-sidebar a.nav-anchor.underline span {
+        @apply underline-offset-2;
+        text-decoration: underline;
+    }
+
+    .ves-megamenu>.navigation .nav-item.level1 .nav-anchor,
+    .ves-megamenu>.navigation .nav-item.level2 .nav-anchor,
+    .ves-megamenu>.navigation .nav-item.level3 .nav-anchor {
+        @apply border-b-[1px];
+    }
+
+    body .ves-megamenu > .navigation {
+        @apply bg-white;
+    }
+
+    body .ves-megamenu.top-navigation .navigation .level0 > a {
+        @apply font-medium;
+    }
+
+    body .ves-megamenu.top-navigation .navigation .level0 > a.active,
+    body .ves-megamenu.top-navigation .navigation .level1 > a.active {
+        @apply bg-primary text-white;
+    }
+
+    body .ves-megamenu.top-navigation .navigation .level0 > a.active + .opener,
+    body .ves-megamenu.top-navigation .navigation .level1 > a.active + .opener {
+        @apply text-white;
+    }
+
+    .ves-custom-hidden {
+        @apply hidden;
+    }
+
+    .vesmega-sidebar .ves-megamenu .nav-item .submenu,
+    .vesmega-sidebar .ves-megamenu.ves-maccordion .opener {
+        @apply block;
+    }
+
+    .vesmega-sidebar .ves-megamenu.ves-offcanvas .opener {
+        @apply block;
+    }
+
+    .ves-megamenu.ves-offcanvas .opener, 
+    .ves-megamenu.ves-maccordion .opener {
+        @apply absolute !important;
+    }
+
+    #header .custom-ves-mobile {
+        @apply flex-nowrap gap-2.5 justify-between;
+    }
+
+    .ves-megamenu li[id*="vesitem-"].nav-item {
+        @apply text-[15px] text-left py-0 w-full relative;
+    }
+
+    .ves-megamenu li[id*="vesitem-"].nav-item:hover > a {
+        @apply text-black;
+    }
+
+    .ves-megamenu .level0 .submenu .nav-item > a {
+        @apply text-base;
+    }
+
+    .ves-megamenu .nav-item .submenu .submenu-inner {
+        @apply pt-0 pb-[15px];
+    }
+
+    .vesmega-sidebar .ves-megamenu .navigation .nav-item.subhover>.submenu>.submenu-inner {
+        @apply py-0;
+    }
+
+    /* menu on desktop */
+    .vesmega-hide-desktop {
+        margin-right: 30px;
+    }
+
+    .vesmega-sidebar-menu {
+        @apply h-[71px] bg-[#f7f7f7];
+    }
+
+    .vesmega-sidebar-menu .active {
+        @apply border-b-2 border-b-[#000] bg-[#ffffff];
+    }
+
+    /* submenu */
+    .ves-megamenu .navigation .nav-item.subhover>.submenu {
+        box-shadow: none !important;
+    }
+
+    .navigation .level0.parent .submenu {
+        @apply relative shadow-none;
+    }
+
+    .ves-megamenu .navigation .level1>a>span {
+        @apply inline-block;
+    }
+
+    .ves-megamenu .drill-opener:before, .ves-megamenu .opener:before {
+        content: "\e61c";
+    }
+
+    .ves-megamenu .drill-opener.item-active:before, .ves-megamenu .opener.item-active:before {
+        content: "\e60f";
+    }
+
+    .ves-megamenu .nav-item.level1.parent .opener:before {
+        content: "\e61c";
+    }
+
+    .ves-megamenu .nav-item.level1.parent .opener.item-active:before {
+        content: "\e60f";
+    }
+
+    .ves-megamenu.ves-offcanvas .opener.item-active, 
+    .ves-megamenu.ves-maccordion .opener.item-active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .ves-megamenu>.navigation .level0 {
+        border-top-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .ves-megamenu.ves-offcanvas .level0 .submenu .nav-item>a, 
+    .ves-megamenu.ves-dhorizontal .level0 .submenu .nav-item>a {
+        @apply leading-[50px] !important;
+    }
+
+    .custom-desktop-hidden ul>.custom-customer-menu-mobile>a {
+        @apply leading-[50px] px-5 py-0;
+    }
+
+    .custom-desktop-hidden ul>.custom-customer-menu-mobile {
+        @apply border-t-[rgba(0,0,0,0.08)] border-t border-solid;
+    }
+
+    .custom-desktop-hidden ul>.custom-customer-menu-mobile:last-child {
+        @apply border-b-[rgba(0,0,0,0.08)] border-b border-solid;
+    }
+}
+
+@screen lg {
+    /* submenu level1, level2 */
+    .ves-megamenu .navigation .nav-item.subhover:hover>.submenu,
+    .ves-megamenu .navigation .nav-item.level1.subhover:hover>.submenu,
+    .ves-megamenu .navigation .nav-item.level2.subhover:hover>.submenu {
+        @apply block !important;
+    }
+
+    .ves-megamenu .navigation .item-content > .nav-dropdown:not(.ves-column1) .item-content1 {
+        @apply flex;
+    }
+
+    .ves-megamenu.top-navigation .navigation .level0 > a {
+        @apply rounded leading-[40px];
+    }
+
+    .ves-megamenu.top-navigation .navigation .level0 > a.active {
+        @apply bg-primary text-white;
+    }
+}
+
+@screen sm-max {
+    .navigation .hidden-xs {
+        @apply hidden;
+    }
+
+    .custom-desktop-hidden ul>.custom-customer-menu-mobile>a {
+        @apply leading-[50px] px-3.5 py-0.5;
+    }
+
+    .ves-megamenu .navigation .level0 .submenu .submenu-inner .content-wrapper {
+        @apply flex-col;
+    }
+
+    .ves-megamenu .navigation .nav-item>.submenu .item-sidebar,
+    .ves-megamenu .navigation .nav-item>.submenu .item-content {
+        @apply w-full !important;
+    }
+
+    .ves-megamenu .navigation .level0 .submenu .submenu-inner .item-header,
+    .ves-megamenu .navigation .level0 .submenu .submenu-inner .item-sidebar,
+    .ves-megamenu .navigation .level0 .submenu .submenu-inner .item-content,
+    .ves-megamenu .navigation .level0 .submenu .submenu-inner .item-footer {
+        @apply px-3.5 py-1;
+    }
+}
+
+@screen md-range {
+    .navigation .hidden-sm {
+        @apply hidden;
+    }
+
+    .vesmega-sidebar .navigation .level0 .submenu .submenu {
+        @apply left-0 !important;
+    }
+}
+
+@screen lg-range {
+    .navigation .hidden-md {
+        @apply hidden;
+    }
+}
+
+@screen lg {
+    .navigation .hidden-lg {
+        @apply hidden;
+    }
+}
+
+@screen xs-max {
+    #header .header-logo > a > img {
+        @apply max-w-[150px];
+    }
+
+    #header .menu-icon > .custom-toogle > svg {
+        @apply w-7;
+    }
+
+    #header #menu-search-icon > svg,
+    #header #menu-cart-icon > svg {
+        @apply w-7 h-7;
+    }
+}
+
+@screen 2xs-max {
+    #header .header-logo > a > img {
+        @apply max-w-[100px];
+    }
+}

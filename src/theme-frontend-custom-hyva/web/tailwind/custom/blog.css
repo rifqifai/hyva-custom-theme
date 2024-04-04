@@ -1,0 +1,295 @@
+.mgz-blog .page-main {
+    @apply mt-[4px] mb-0 pb-[32px];
+}
+
+.mgz-blog .title-wrapper {
+    display: none;
+}
+
+.categories-tab-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    a.active {
+        @apply text-primary border-b-primary font-medium;
+    }
+}
+
+.blog-post-box-title a,
+.blog-post-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.blog-post-meta > span + span:before {
+    @apply content-['\2022'] inline-block list-disc mx-[4px] my-0;
+}
+
+.blog-post-list .blog-post-image>a {
+    @apply w-full pt-[55%] relative;
+    display: block;
+}
+
+.blog-post-list .blog-post-image img {
+    @apply h-full w-full object-cover absolute top-0;
+}
+
+.featured-post-wrapper .featured-post {
+    @apply w-full;
+}
+
+.featured-post-wrapper .blog-post-image>a {
+    @apply relative pt-[52.5%];
+    display: block;
+}
+
+.featured-post-wrapper .blog-post-image>a img {
+    @apply absolute w-full h-full object-cover left-0 top-0;
+}
+
+.mgz-blog.page-layout-1column .columns {
+    @apply gap-y-[unset];
+}
+
+.mgz-blog .amrelated-bundle-toolbar .pager  {
+    > p {
+        @apply hidden;
+    }
+
+    > div {
+        @apply justify-end;
+    }
+}
+
+.mgz-blog .blog-post-view .blog-post-content-wrapper {
+    [data-content-type='row'][data-appearance='contained'] {
+        @apply pr-0 pl-0;
+    }
+    
+    [data-content-type='row'] > div {
+        @apply p-0;
+    }
+
+    img {
+        @apply rounded-md;
+    }
+
+    .blog-post-featured-media img {
+        @apply mt-0 mb-[20px];
+    }
+
+    .blog-post-featured-media.aspect-ratio-169 {
+        @apply relative w-full pt-[56.25%] mb-[20px];
+
+        iframe {
+            @apply absolute top-0 w-full h-full rounded-md;
+        }
+    }
+}
+
+.mgz-blog .blog-post-content,
+.mgz-blog .blog-post-content .prose {
+    @apply text-lg leading-6;
+}
+
+.mgz-blog .blog-post-relatedproducts {
+    .rating-summary svg {
+        @apply w-5 h-5;
+    }
+
+    .product-image-wrapper img {
+        @apply aspect-square;
+    }
+
+    .price-box.price-final_price {
+        @apply flex flex-col gap-[2px];
+
+        .price-label {
+            @apply hidden;
+        }
+
+        .old-price {
+            @apply text-neutral-400 text-sm font-normal line-through;
+        }
+    }
+}
+
+@screen md {
+    .mgz-blog .page-main {
+        @apply mt-0;
+    }
+
+    .top-three-wrapper {
+        @apply grid grid-cols-[474px_226px] gap-x-5 gap-y-3;
+    
+        .top-three-post {
+            &:first-of-type {
+                @apply row-start-1 row-end-3;
+
+                .blog-post-summary {
+                    @apply p-6;
+
+                    .blog-post-title {
+                        @apply text-xl font-bold leading-6 tracking-[-0.2px] mb-[8px];
+                    }
+    
+                    .blog-post-meta {
+                        @apply mb-0 text-sm leading-[18px];
+                    }
+                }
+            }
+
+            .blog-post-image {
+                @apply mb-0;
+
+                a {
+
+                    img {
+                        @apply rounded-lg object-cover aspect-[16/9];
+                    }
+                }
+            }
+
+            .blog-post-summary {
+                @apply absolute bottom-0 inset-x-0 p-2.5 rounded-bl-lg rounded-br-lg;
+                background: linear-gradient(
+                    rgba(0, 0, 0, 0),
+                    rgba(0, 0, 0, 0.25),
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.75)
+                );
+
+                * {
+                    @apply text-white;
+                }
+
+                .blog-post-title {
+                    @apply text-xs font-semibold leading-4 mb-[6px];
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+    
+                .blog-post-meta {
+                    @apply mb-0 text-xs leading-4;
+                }
+
+                .blog-post-excerpt-wrapper {
+                    @apply hidden;
+                }
+            }
+        }
+    }
+
+    .blog-post-list {
+        .blog-postlist-summary {
+            .blog-post-box-title {
+                @apply h-[48px];
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .blog-post-excerpt {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;  
+                overflow: hidden;
+            }
+        }
+    }
+
+    .mgz-blog .blog-post-relatedproducts {    
+        .price-box.price-final_price {
+            @apply gap-1;
+
+            .old-price {
+                @apply text-neutral-400 text-base leading-[18px] font-normal line-through;
+            }
+        }
+    }
+}
+
+@screen lg {
+    .mgz-blog {
+        &.blog-post-view {
+            .page-main {
+                @apply pb-[48px];
+
+                .blog-comment-form {
+                    @apply mb-0;
+                }
+            }
+        }
+
+        .page-main {
+            @apply pb-20;
+        }
+    }
+
+    .mgz-blog .amrelated-bundle-toolbar .pager  {    
+        > div {
+            @apply col-span-8;
+        }
+    }
+
+    .top-three-wrapper {
+        @apply grid grid-cols-[calc(50%_-_12px)_calc(50%_-_12px)] gap-x-6 gap-y-4;
+
+        .top-three-post {
+            &:not(:first-of-type) {
+                .blog-post-box-inner {
+                    @apply flex-row gap-6;
+                }
+
+                .blog-post-summary {
+                    @apply p-0 flex flex-col justify-center gap-[8px];
+                    position: unset;
+                    background: none;
+
+                    * {
+                        @apply text-inherit;
+                    }
+
+                    .blog-post-excerpt-wrapper {
+                        display: block;
+                    }
+
+                    .blog-post-title {
+                        @apply mb-0 text-2xl leading-6 font-bold line-clamp-2 text-neutral-800;
+                    }
+
+                    .blog-post-meta {
+                        @apply text-base leading-[18px] text-neutral-500;
+                    }
+
+                    .blog-post-excerpt {
+                        @apply line-clamp-3 text-neutral-800;
+                    }
+                }
+
+                .blog-post-summary,
+                .blog-post-image {
+                    @apply w-[calc(50%_-_12px)];
+                }
+            }
+        }
+    }
+
+    .mgz-blog .blog-post-view .blog-post-content-wrapper {
+        img {
+            @apply rounded-2xl;
+        }
+
+        .blog-post-featured-media img {
+            @apply mb-6;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+/**
+* different styles can be found at https://tailwindcss-forms.vercel.app/
+**/
+.form-input,
+.form-email,
+.form-select,
+.form-multiselect,
+.form-textarea {
+    @apply border border-gray-300 rounded-md shadow-sm min-h-a11y text-base text-neutral;
+
+    &:focus {
+        @apply border-primary-lighter ring ring-primary ring-opacity-50;
+    }
+}
+
+.form-select {
+    &:hover {
+        @apply cursor-pointer;
+    }
+}
+
+fieldset .field .control {
+    @apply relative;
+}
+
+fieldset .field-error .control,
+fieldset .control > .field-error {
+    @apply relative;
+    
+    &:after {
+        @apply absolute flex items-center justify-center p-3 right-0 top-0;
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.4845 2.49414C9.15808 1.32747 10.842 1.32748 11.5156 2.49414L17.7943 13.3691C18.4678 14.5358 17.6259 15.9941 16.2787 15.9941H3.72136C2.37421 15.9941 1.53224 14.5358 2.20582 13.3691L8.4845 2.49414ZM10 4.99915C10.4142 4.99915 10.75 5.33493 10.75 5.74915V9.24915C10.75 9.66336 10.4142 9.99915 10 9.99915C9.58579 9.99915 9.25 9.66336 9.25 9.24915L9.25 5.74915C9.25 5.33493 9.58579 4.99915 10 4.99915ZM10 13.9991C10.5523 13.9991 11 13.5514 11 12.9991C11 12.4469 10.5523 11.9991 10 11.9991C9.44772 11.9991 9 12.4469 9 12.9991C9 13.5514 9.44772 13.9991 10 13.9991Z' fill='%23DC2626'/%3E%3C/svg%3E");
+    }
+}
+
+fieldset .field-error .form-input {
+    @apply focus:ring-0 focus:border-red;
+}
+ 

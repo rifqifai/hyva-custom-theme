@@ -1,0 +1,381 @@
+<?php
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @author    LeeNguyen(chiennq@magezon.com)
+ * @package   Magezon_HyvaBuilder
+ * @copyright Copyright (C) 2023 Magezon (https://magezon.com)
+ */
+?>
+<?php
+/**
+ * @var $block \Magezon\Builder\Block\Element
+ */
+
+$coreHelper      = $this->helper('\Magezon\Core\Helper\Data');
+$builderHelper   = $this->helper('\Magezon\Builder\Helper\Data');
+$element         = $this->getElement();
+$title           = $coreHelper->filter($element->getData('title'));
+$titleAlign      = $element->getData('title_align');
+$titleTag        = $element->getData('title_tag');
+$description     = $coreHelper->filter($element->getData('description'));
+$showLine        = $element->getData('show_line');
+$linePosition    = $element->getData('line_position');
+$items           = $this->toObjectArray($element->getItems());
+$onclick         = $element->getData('onclick');
+$lazyLoad        = $element->getData('owl_lazyload');
+$hoverEffect     = $element->getData('hover_effect');
+$displayOnHover  = $element->getData('display_on_hover');
+$overlayColor    = $element->getData('overlay_color');
+$carouselOptions = $this->getOwlCarouselOptions();
+$classes         = $this->getOwlCarouselClasses();
+$size            = $this->getsize();
+$id              = time() . uniqid();
+$borderRadius   = $this->getStyleProperty($element->getData('image_border_radius'));
+$contentPosition = $element->getData('content_position') ? $element->getData('content_position') : 'middle-center';
+if ($contentPosition) { $classes[] = 'image-content-' . $contentPosition;
+}
+if ($onclick=='magnific') { $classes[] = 'mgz-magnific';
+}
+if ($hoverEffect) { $classes[] = 'hover-type-' . $hoverEffect . '-wrapper';
+}
+if ($displayOnHover) { $classes[] = 'item-content-hover';
+}
+
+$widgetConfig =  json_decode($coreHelper->serialize($carouselOptions), true);
+$sliderIndex = 1;
+if (!$itemCount = count($items)) {
+    return '';
+}
+if ($borderRadius) {
+    $borderRadius = $borderRadius == 'rounded-full' ? $borderRadius : "rounded-[$borderRadius]";
+}
+?>
+
+<script>
+    'use strict';
+
+    function initSliderComponent() {
+        return {
+            active: 0,
+            itemCount: 0,
+            getSlider() {
+                return this.$root.querySelector('.js_slides');
+            },
+            pageSize: 1,
+            pageFillers: 0,
+            calcPageSize() {
+                const slider = this.getSlider();
+                if (slider) {
+                    this.itemCount = slider.querySelectorAll('.js_slide').length;
+                    this.pageSize = Math.round(slider.clientWidth / slider.querySelector('.js_slide').clientWidth);
+                    this.pageFillers = (
+                        this.pageSize * Math.ceil(this.itemCount / this.pageSize)
+                    ) - this.itemCount;
+                }
+            },
+            calcActive() {
+                const slider = this.getSlider();
+                if (slider) {
+                    const sliderItems = this.itemCount + this.pageFillers;
+                    const calculatedActiveSlide = slider.scrollLeft / (slider.scrollWidth / sliderItems);
+                    this.active = Math.round(calculatedActiveSlide / this.pageSize) * this.pageSize;
+                }
+            },
+            scrollPrevious() {
+                this.scrollTo(this.active - this.pageSize);
+            },
+            scrollNext() {
+                this.scrollTo(this.active + this.pageSize);
+            },
+            scrollTo(idx) {
+                const slider = this.getSlider();
+                if (slider) {
+                    const slideWidth = slider.scrollWidth / (this.itemCount + this.pageFillers);
+                    slider.scrollLeft = Math.floor(slideWidth) * idx;
+                    this.active = idx;
+                }
+            },
+            skipCarouselToNavigation(navSelector) {
+                const element = document.getElementById(navSelector)
+                if (element) {
+                    element.scrollIntoView({behavior: 'smooth', block: 'end'});
+                    const button = element.querySelector('button:not([disabled])');
+                    this.$nextTick(() => button && button.focus({preventScroll: true}))
+                }
+            }
+        }
+    }
+</script>
+
+<div class="mgz-block">
+    <?php if ($title || $description) { ?>
+    <div class="mgz-block-heading mgz-block-heading-align-<?= $titleAlign ?><?= $showLine ? ' mgz-block-heading-line' : '' ?> mgz-block-heading-line-position-<?= $linePosition ?>">
+        <?php if ($title) { ?>
+            <<?= $titleTag ?> class="title"><?= $title ?></<?= $titleTag ?>>
+        <?php } ?>
+        <?php if ($description) { ?>
+            <div class="info"><?= $description ?></div>
+        <?php } ?>
+    </div>
+    <?php } ?>
+    <div class="mgz-block-content relative">
+        <!-- <div id="loader<?= $id ?>" class="loader-wrapper">
+            <div class="loader"></div>
+        </div> -->
+    <?php if ($items && count($items)) { ?>
+        <div id="<?= $id ?>">
+            <section class="relative hyva-slider"
+                x-data="initSliderComponent()"
+                x-init="calcPageSize();"
+                x-id="['slider-nav', 'slider-end', 'slider-desc']"
+                @resize.window.debounce="calcPageSize(); $nextTick( function() { calcActive() })"
+                role="group"
+                aria-roledescription="<?= $escaper->escapeHtml(__('Slider')) ?>"
+                aria-label="<?= $escaper->escapeHtml(__('Latest items')) ?>"
+                :aria-describedby="$id('slider-desc')"
+            >
+                <span
+                    class="sr-only"
+                    :id="$id('slider-desc')"
+                    tabindex="-1"
+                >
+                        <?= $escaper->escapeHtml(__('Navigating through the elements of the carousel is possible using the tab key. You can skip the carousel or go straight to carousel navigation using the skip links.')) ?>
+                </span>
+                <a
+                    :href="`#${$id('slider-end')}`"
+                    class="action skip sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-white"
+                >
+                    <?= $escaper->escapeHtml(__('Press to skip the slider')) ?>
+                </a>
+                <button
+                    x-show="itemCount > pageSize"
+                    type="button"
+                    class="action skip sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-white"
+                    @click.prevent="skipCarouselToNavigation($id('slider-nav'))"
+                >
+                    <?= $escaper->escapeHtml(__('Press to go to carousel navigation')) ?>
+                </button>
+                <div class="relative w-full overflow-x-hidden">
+                    <div class="relative flex flex-nowrap w-full overflow-auto transition-all js_slides snap" 
+                        style="gap: <?= $widgetConfig['margin'] ?>px"
+                        @scroll.debounce="calcActive"
+                    >
+                        <?php foreach ($items as $item): ?>
+                            <?php
+                                $itemDefault = (($widgetConfig['item_xs']) && ($widgetConfig['item_xs'] < 12));
+                                $itemTablet = (($widgetConfig['item_md']) && ($widgetConfig['item_md'] < 12));
+                                $itemDesktop = (($widgetConfig['item_xl']) && ($widgetConfig['item_xl'] < 12));
+
+                                $defaultValue = $widgetConfig['item_xs'];
+                                $tabletValue = $widgetConfig['item_md'];
+                                $desktopValue = $widgetConfig['item_xl'];
+
+                            switch ($defaultValue) {
+                                case 1:
+                                    $defaultValue = 'w-full';
+                                    break;
+                                case 2:
+                                    $defaultValue = 'w-1/2';
+                                    break;
+                                default:
+                                    $tabletValue = 'w-auto';
+                            }
+
+                            switch ($tabletValue) {
+                                case 1:
+                                    $tabletValue = 'w-full';
+                                    break;
+                                case 2:
+                                    $tabletValue = 'w-1/2';
+                                    break;
+                                case 3:
+                                    $tabletValue = 'w-1/4';
+                                    break;
+                                case 4:
+                                    $tabletValue = 'w-1/4';
+                                    break;
+                                case 5:
+                                    $tabletValue = 'w-1/5';
+                                    break;
+                                default:
+                                    $tabletValue = 'w-auto';
+                            }
+
+                            switch ($desktopValue) {
+                                case 1:
+                                    $desktopValue = 'w-full';
+                                    break;
+                                case 2:
+                                    $desktopValue = 'w-1/2';
+                                    break;
+                                case 3:
+                                    $desktopValue = 'w-1/3';
+                                    break;
+                                case 4:
+                                    $desktopValue = 'w-1/4';
+                                    break;
+                                case 5:
+                                    $desktopValue = 'w-1/5';
+                                    break;
+                                default:
+                                    $desktopValue = 'w-auto';
+                            }
+                            ?>
+                            <div role="group"
+                                x-id="['slide-desc']"
+                                aria-roledescription="<?= $escaper->escapeHtml(__('Slide')) ?>"
+                                :aria-hidden="<?= (int) $sliderIndex ?> > active && <?= (int) $sliderIndex ?> <= (active + pageSize) ? 'false' : 'true'"
+                                aria-label="<?= $escaper->escapeHtmlAttr(__('Slide %1 of %2', $sliderIndex++, count($items))) ?>"
+                                :aria-describedby="$id('slide-desc')"
+                                class="relative flex shrink-0 py-1 js_slide
+                                    <?= $itemDefault ? ''.$defaultValue.'' : 'w-auto' ?>
+                                    <?= $itemTablet ? 'sm:'.$tabletValue.'' : 'sm:w-full' ?>
+                                    <?= $itemTablet ? 'md:'.$tabletValue.'' : 'md:w-full' ?>
+                                    <?= $itemDesktop ? 'lg:'.$desktopValue.'' : 'lg:w-full' ?>
+                                "
+                            >
+                                <?php
+                                if (!$item['image']) { continue;
+                                }
+                                $title       = $coreHelper->filter($item['title']);
+                                $description = $coreHelper->filter($item['description']);
+                                $src         = $block->getImage($item['image']);
+                                $link        = $linkTitle = $blank = $nofollow = '';
+                                $popupType   = 'image';
+                                if ($onclick) {
+                                    if ($onclick == 'magnific') {
+                                        if ($item['popup_image']) {
+                                            $link = $builderHelper->getImageUrl($item['popup_image']);
+                                        } elseif ($item['video_map']) {
+                                            $link = $item['video_map'];
+                                            $popupType = 'iframe';
+                                        } else {
+                                            $link = $builderHelper->getImageUrl($item['image']);
+                                        }
+                                        $linkTitle = $item['popup_title'] ? $coreHelper->filter($item['popup_title']) : $title;
+                                    }
+                                    if ($onclick == 'custom_link' && $item['custom_link']) {
+                                        $_link     = $block->getLinkParams($item['custom_link']);
+                                        $link      = $_link['url'];
+                                        $blank     = $_link['blank'];
+                                        $nofollow  = $_link['nofollow'];
+                                        $linkTitle = $_link['title'];
+                                    }
+                                }
+                                ?>
+                                <div class="item mgz-carousel-item xs:mx-auto <?= $hoverEffect ? 'hover-type-' . $hoverEffect : '' ?>">
+                                    <div class="item-inner flex flex-col gap-4 bg-neutral-100 w-[180px] h-[180px] flex items-center justify-center mb-2.5 rounded-full">
+                                        <?php if ($link) { ?>
+                                            <a class="mgz-carousel-<?= $onclick ?>" 
+                                                data-type="<?= $popupType ?>"
+                                                href="<?= $link ?>" 
+                                                title="<?= $block->escapeHtml($linkTitle) ?>"
+                                                <?= $blank ? 'target="_blank"' : '' ?> 
+                                                <?= $nofollow ? 'rel="nofollow"' : '' ?>>
+                                            <?php } ?>
+                                            <img <?= isset($size['width']) ? 'width="' . $size['width'] . '"' : '' ?> <?= isset($size['height']) ? 'height="' . $size['height'] . '"' : '' ?> class="owl-item-image <?= $borderRadius ?> <?= $lazyLoad ? 'owl-lazy' : '' ?>" <?= $lazyLoad ? 'data-src="' . $src . '"' : '' ?> src="<?= $src ?>" alt="<?= $block->escapeHtml($title) ?>"/>
+                                            <?php if ($link) { ?>
+                                            </a>
+                                        <?php } ?>
+                                        <?php if ($overlayColor) { ?>
+                                            <div class="mgz-overlay"></div>
+                                        <?php } ?>
+                                    </div>
+                                    <?php if (($title || $description) && (!$contentPosition || $contentPosition != 'none')) { ?>
+                                        <div class="item-content text-center">
+                                            <?php if ($title) { ?>
+                                                <div class="item-title text-md lg:text-xl"><?= $title ?></div>
+                                            <?php } ?>
+                                            <?php if ($description) { ?>
+                                                <div class="item-description"><?= $description ?></div>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <template x-if="itemCount > pageSize">
+                    <div class="slider-navigation"
+                        role="group"
+                        aria-label="<?= $escaper->escapeHtml(__('Slide controls')) ?>"
+                        :id="$id('slider-nav')"
+                    >
+                        <?php if ($widgetConfig['nav']): ?>
+                            <div class="flex absolute top-1/2 -translate-y-1/2 justify-between w-full">
+                                <button
+                                    role="button"
+                                    aria-label="<?= $escaper->escapeHtml(__('Previous slide')) ?>"
+                                    class="w-9 h-9 rounded-full md:w-11 md:h-11 md:rounded-md bg-white flex items-center justify-center ml-2 md:ml-10 shadow-md fill-neutral-600 hover:fill-primary"
+                                    :class="{ 'pointer-events-none' : active === 0 }"
+                                    @click="scrollPrevious"
+                                >
+                                <svg class="w-5 h-5 md:w-6 md:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7906 5.23017C13.0777 5.52875 13.0684 6.00353 12.7698 6.29063L8.83208 10L12.7698 13.7094C13.0684 13.9965 13.0777 14.4713 12.7906 14.7698C12.5035 15.0684 12.0287 15.0777 11.7302 14.7906L7.23017 10.5406C7.08311 10.3992 7 10.204 7 10C7 9.79599 7.08311 9.60078 7.23017 9.45938L11.7302 5.20938C12.0287 4.92228 12.5035 4.93159 12.7906 5.23017Z" />
+                                </svg>
+                                </button>
+
+                                <button
+                                    role="button"
+                                    aria-label="<?= $escaper->escapeHtml(__('Next slide')) ?>"
+                                    class="w-9 h-9 rounded-full md:w-11 md:h-11 md:rounded-md bg-white flex items-center justify-center mr-2 md:mr-10 shadow-md fill-neutral-600 hover:fill-primary"
+                                    :class="{ 'pointer-events-none' : active >= itemCount-pageSize }"
+                                    @click="scrollNext"
+                                >
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.20938 14.7698C6.92228 14.4713 6.93159 13.9965 7.23017 13.7094L11.1679 10L7.23017 6.29062C6.93159 6.00353 6.92228 5.52875 7.20938 5.23017C7.49647 4.93159 7.97125 4.92228 8.26983 5.20937L12.7698 9.45937C12.9169 9.60078 13 9.79599 13 10C13 10.204 12.9169 10.3992 12.7698 10.5406L8.26983 14.7906C7.97125 15.0777 7.49647 15.0684 7.20938 14.7698Z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($widgetConfig['dots']): ?>
+                            <div class="flex gap-2.5 md:gap-3 justify-center items-center mt-4 w-full absolute bottom-5 md:bottom-6 lg:bottom-8">
+                                <?php for ($i=0; $i < $itemCount; $i++): ?>
+                                    <button
+                                        role="button"
+                                        aria-label="<?= $escaper->escapeHtmlAttr(__('Show slide %1 of %2', $i + 1, $itemCount)) ?>"
+                                        class="w-2 h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 shadow rounded-full cursor-pointer hover:bg-white-500"
+                                        @click="scrollTo(<?= (int) $i ?>)"
+                                        :class="{
+                                            'w-2 h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 bg-white shadow-[0px_0px_0px_3px] shadow-primary': active === <?= (int) $i ?>,
+                                            'w-2 h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 bg-white': active !== <?= (int) $i ?>,
+                                            'hidden': (pageSize !== 1 && !!(<?= (int) $i ?> % pageSize))
+                                        }"
+                                    >
+                                    </button>
+                                <?php endfor; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </template>
+                <span :id="$id('slider-end')" tabindex="-1"></span>
+            </section>
+        </div>
+    <?php } ?>
+    </div>
+</div>
+
+<script>
+    let div<?= $id ?> = document.getElementById('<?= $id ?>').parentNode;
+    let img<?= $id ?> = div<?= $id ?>.querySelectorAll('.owl-item-image')[0];
+    let aspectRatio<?= $id ?>;
+    aspectRatio<?= $id ?> = img<?= $id ?>.width / img<?= $id ?>.height;
+    calculateDivHeight();
+
+    function calculateDivHeight() {
+        let newHeight<?= $id ?> = div<?= $id ?>.offsetWidth / aspectRatio<?= $id ?>;
+        div<?= $id ?>.style.minHeight = newHeight<?= $id ?> + 'px';
+    }
+
+    window.onresize = calculateDivHeight;
+</script>
