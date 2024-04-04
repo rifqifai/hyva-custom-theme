@@ -1,0 +1,128 @@
+.truncateOff {
+    @apply line-clamp-none;
+}
+
+.truncateOffButton {
+    @apply inline-block;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.catalog-product-view input::-webkit-outer-spin-button,
+.catalog-product-view input::-webkit-inner-spin-button {
+  @apply m-0;
+  -webkit-appearance: none;
+}
+
+.catalog-product-view .product-options-wrapper .options-list select,
+.catalog-product-view .product-options-bottom .options-list select {
+  @apply text-neutral-400;
+}
+
+.catalog-product-view .product-options-wrapper .options-list select>option,
+.catalog-product-view .product-options-bottom .options-list select>option {
+  @apply text-neutral-700;
+  padding: 12px 8px 12px 8px;
+}
+
+.catalog-product-view .product-options-wrapper .options-list select option:checked,
+.catalog-product-view .product-options-bottom .options-list select option:checked {
+  @apply bg-neutral-100;
+  @apply text-primary-600;
+}
+
+.catalog-product-view .product-options-wrapper .options-list select:has(option:checked:not([value])),
+.catalog-product-view .product-options-wrapper .options-list select:has(option:checked:not([value=""])),
+.catalog-product-view .product-options-bottom .options-list select:has(option:checked:not([value])),
+.catalog-product-view .product-options-bottom .options-list select:has(option:checked:not([value=""])) {
+  @apply text-neutral-700;
+}
+
+.page-product-configurable.catalog-product-view .swatch-attribute .swatch-attribute-options .swatch-option {
+  margin: 0px 12px 0px 0px;
+}
+
+.page-product-configurable.catalog-product-view .swatch-attribute .swatch-attribute-options .swatch-option.type-text{
+  min-width: 50px;
+  height: 38px;
+  padding: 10px;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.info-tab .tab-wrapper:first-of-type button {
+@apply pl-0;
+}
+
+.info-tab {
+  @apply pt-[65px];
+  &:after {
+    @apply block border-b-[1px] border-neutral-300 w-full;
+    content: '';
+  }
+}
+
+.rating-summary-wrapper .rating-summary svg {
+  @apply w-5 h-5;
+
+  @screen md {
+    @apply w-7 h-7;
+  }
+}
+
+.review-modal-wrapper [x-spread] {
+  @apply bg-neutral-800 bg-opacity-30;
+
+  > div {
+    @apply items-end;
+  
+    @screen md {
+      @apply items-center max-w-[768px] px-6 mx-auto;
+    }
+  }
+}
+
+#review_form label.required:after {
+  @apply text-red-600 content-['*'] inline-block;
+}
+
+.catalog-product-view {
+  .slider-container {
+    @apply -mr-4 md:-mr-6 lg:-mr-10;
+  }
+
+  .product-page.product-info-main {
+    .price-box.price-final_price {
+      @apply flex items-baseline;
+  
+      .price-from .price-final_price,
+      .price-to .price-final_price {
+        @apply mb-0;
+      }
+    }
+  }
+}
+
+.page-product-grouped {
+  .title-qty {
+    @apply hidden;
+  }
+
+  button[form=product_addtocart_form] {
+    @apply min-h-[42px];
+  }
+}
+
+.nested.options-list .disabled, .nested.options-list .disabled span, .nested.options-list select option:disabled {
+  @apply text-gray-400;
+}
+
+.nested.options-list input[type="checkbox"]:disabled, .nested.options-list input[type="radio"]:disabled {
+  @apply border-gray-400
+}
+
+.product-main-image-fullscreen .wp-product-label {
+  @apply hidden;
+}

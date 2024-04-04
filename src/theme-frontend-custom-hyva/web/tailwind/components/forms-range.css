@@ -1,0 +1,84 @@
+@layer components {
+    input[type="range"] {
+        --hv-fill-min: var(--tw-range-fill-min, 0);
+        --hv-fill: var(--tw-range-fill-max, 0);
+        --hv-fill-color: var(--tw-range-fill-color, theme("colors.primary.700"));
+        --hv-track-size: var(--tw-range-track-size, theme("spacing.2"));
+        --hv-thumb-size: var(--tw-range-thumb-size, theme("spacing.6"));
+        --hv-thumb-color: var(--tw-range-thumb-color, theme("colors.white"));
+        --hv-track: linear-gradient(
+            to right,
+            currentcolor 0%,
+            currentcolor calc(var(--hv-fill-min) * 1%),
+            var(--hv-fill-color) calc(var(--hv-fill-min) * 1%),
+            var(--hv-fill-color) calc(var(--hv-fill) * 1%),
+            currentcolor calc(var(--hv-fill) * 1%),
+            currentcolor 100%
+        );
+        @apply appearance-none text-slate-200 focus:outline-none;
+        height: var(--hv-thumb-size);
+
+        &:hover {
+            --hv-thumb-color: theme("colors.white");
+        }
+
+        &:focus {
+            --hv-thumb-color: theme("colors.primary");
+
+            /* &::-webkit-slider-thumb {
+                @apply ring-4;
+            }
+
+            &::-moz-range-thumb {
+                @apply ring-4;
+            } */
+        }
+
+        &::-webkit-slider-runnable-track {
+            @apply w-full rounded-lg;
+            height: var(--hv-track-size);
+            background: var(--hv-track);
+        }
+
+        &::-moz-range-track {
+            @apply w-full rounded-lg;
+            height: var(--hv-track-size);
+            background: var(--hv-track);
+        }
+
+        &::-webkit-slider-thumb {
+            @apply appearance-none cursor-pointer rounded-full shadow-md border border-solid border-primary transition-colors;
+            width: var(--hv-thumb-size);
+            height: var(--hv-thumb-size);
+            margin-top: calc(
+                0.5 * calc(var(--hv-track-size) - var(--hv-thumb-size))
+            );
+            background-color: var(--hv-thumb-color);
+        }
+
+        &::-moz-range-thumb {
+            @apply box-border appearance-none cursor-pointer rounded-full shadow-md border border-solid border-primary transition-colors;
+            width: var(--hv-thumb-size);
+            height: var(--hv-thumb-size);
+            background-color: var(--hv-thumb-color);
+        }
+    }
+}
+
+.multirange-slider {
+    @apply grid;
+    grid-template-areas: "stacked";
+
+    & [type="range"] {
+        @apply pointer-events-none;
+        grid-area: stacked;
+
+        &::-webkit-slider-thumb {
+            @apply isolate pointer-events-auto;
+        }
+
+        &::-moz-range-thumb {
+            @apply isolate pointer-events-auto;
+        }
+    }
+}

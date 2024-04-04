@@ -1,0 +1,29 @@
+
+.product-item {
+    .price-container {
+        @apply block;
+
+        .price {
+            @apply font-bold text-base md:text-2xl;
+        }
+
+        .price-label {
+            @apply text-sm text-neutral-500;
+        }
+        .price-wrapper {
+            @apply text-md text-neutral-600;
+        }
+    }
+
+    .special-price .price-container .price-label {
+        @apply sr-only;
+    }
+
+    .old-price .price-container {
+        @apply text-neutral-400;
+
+        .price {
+            @apply font-normal text-sm md:text-base line-through;
+        }
+    }
+}

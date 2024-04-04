@@ -1,0 +1,14 @@
+@screen sm-max {
+    .catalog-product-view {
+        #add-to-wishlist,
+        #add-to-compare {
+            @apply w-5 h-5 m-0;
+        }
+
+        .mobile-social-share-wrapper .mobile-social-share-item:hover {
+            svg {
+                @apply fill-primary-600;
+            }
+        }       
+    }
+}

@@ -1,0 +1,131 @@
+.header-logo {
+    @apply absolute -translate-x-2/4 left-2/4;
+
+    img {
+        @apply w-[90px] h-auto;
+    }
+}
+
+#search {
+    @apply w-full bg-neutral-100 text-neutral-700 rounded-lg text-base border border-neutral-200;
+    padding: 12px 52px 12px 16px;
+
+    &:focus {
+        @apply border-neutral-300;
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+#search + svg {
+    @apply absolute -translate-y-2/4 right-[16px] top-2/4;
+}
+
+#search::-ms-input-placeholder {
+    /* Edge 12-18 */
+    @apply text-neutral-400;
+}
+
+#search::placeholder {
+    @apply text-neutral-400;
+}
+
+#search-content-wrapper {
+    @apply relative top-full left-0 container z-10 w-full
+    pt-[10px] pb-[12px] -mt-[2px] bg-white;
+}
+
+#header {
+    @apply shadow top-0;
+}
+
+#header {
+    -webkit-transition: margin-top 0.25s ease-in-out;
+    transition: margin-top 0.25s ease-in-out;
+}
+
+.page.messages {
+    -webkit-transition: top 0.25s ease-in-out;
+    transition: top 0.25s ease-in-out;
+}
+
+.mobile-menu-sidebar {
+    background-color: rgba(3, 7, 18, 0.25);
+}
+
+.mobile-menu-sidebar a.active,
+.mobile-menu-sidebar a.active + button {
+    @apply text-primary;
+}
+
+.mobile-tab-menu-title {
+    @apply flex flex-auto basis-2/4 justify-center h-full items-center
+    capitalize text-lg text-neutral font-semibold
+    border-b border-b-transparent box-border;
+
+    &.active {
+        @apply bg-white border-b-neutral-400;
+    }
+}
+
+.mobile-menu-close {
+    @apply bg-[rgba(255,255,255,.4)] text-white
+    p-[2px] rounded-[6px] left-[calc(100%_+_12px)] top-[8px];
+}
+
+ul > .custom-customer-menu-mobile + .custom-customer-menu-mobile {
+    @apply mt-[16px];
+}
+
+.mobile-menu-sidebar .tab-panel::-webkit-scrollbar {
+    @apply hidden;
+}
+
+.menu-desktop .navigation ul li {
+    &:first-child {
+        a {
+            @apply pl-0;
+        }
+    }
+}
+
+@screen md-range {
+    #search-content-wrapper {
+        @apply order-2 p-0;
+        position: unset;
+        width: 596px;
+        max-width: calc(100% - 225px);
+    }
+}
+
+@screen md {
+    .header-logo {
+        position: unset;
+        transform: unset;
+        left: unset;
+    }
+}
+
+@screen lg {
+    .header-logo img {
+        @apply w-auto h-[34px];
+    }
+
+    #search-content-wrapper {
+        @apply order-2 p-0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 596px;
+        max-width: calc(100% - 625px);
+    }
+
+    .menu-desktop .level-0.active > a {
+        @apply text-primary;
+    }
+
+    .menu-desktop a.active {
+        @apply text-primary;
+    }
+}

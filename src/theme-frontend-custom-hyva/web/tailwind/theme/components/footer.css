@@ -1,0 +1,28 @@
+.page-footer{}
+
+#footer-links .footer-links-box {
+    @apply leading-[18px] font-normal ;
+}
+
+#footer-links .footer-links-box a {
+    @apply text-neutral-600 no-underline;
+
+    &:hover {
+        @apply text-primary-700 no-underline;
+    }
+}
+
+#footer-links .footer-links-box .footer-links-icons a {
+    &:hover {
+        &:after {
+            @apply block border-b-2 border-primary-700 w-6 mt-0.5;
+            content: '';
+        }
+    }
+}
+
+@screen lg {
+    #footer-links {
+        @apply w-[747px] max-w-full float-right;
+    }
+}

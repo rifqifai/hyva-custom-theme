@@ -1,0 +1,12 @@
+.whatsapp-sticky img {
+    @apply fixed bottom-[20px] right-[20px] z-50 m-0 !important;
+}
+.checkout-cart-index .whatsapp-sticky img {
+    @apply fixed bottom-[90px] sm:bottom-[20px] right-[20px] z-50 m-0 !important;
+}
+.whatsapp-sticky .prose {
+    @apply leading-none;
+}
+.account.sales-guest-view .btn-reorder {
+    @apply hidden;
+}

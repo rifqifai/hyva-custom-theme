@@ -1,0 +1,238 @@
+.mode-grid {
+    .product-item {
+        .product-image-photo {
+            @apply mb-2 md:mb-4 ;
+        }
+
+        &.card {
+            @apply p-2;
+    
+            @screen md {
+                @apply p-3;
+            }
+    
+            @screen lg {
+                @apply p-4;
+            }
+        }
+    }
+}
+
+.mode-list {
+    .product-item {
+        .product-image-photo {
+            @apply rounded-[0.6px] md:rounded;
+        }
+
+        &.card {
+            @apply p-2;
+    
+            @screen md {
+                @apply p-4;
+            }
+        }
+    }
+}
+
+.product-item {
+    @apply rounded-md hover:bg-white;
+
+    @screen md {
+        @apply rounded-lg;
+    }
+
+    @screen lg {
+        @apply rounded-xl;
+    }
+
+    @screen md-max {
+        @apply p-3;
+    }
+
+    @screen sm-max {
+        @apply p-2;
+    }
+
+    .product-item-photo {
+        @apply relative;
+
+        .product-image-photo {
+            @apply mb-0;
+        }
+
+        .wp-product-label {
+            @screen sm-max {
+                span {
+                    @apply !text-xs;
+                }
+            }
+        }
+
+        .oos-label ~ .wp-product-label {
+            @apply hidden;
+        }
+    }
+
+    .product-info a.product-item-link {
+        @apply overflow-hidden text-inherit no-underline text-neutral text-base md:text-lg font-medium;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .product-item-description .mgz-element-text,
+    .product-item-description .mgz-element-inner,
+    .short-description .mgz-element-text,
+    .short-description .mgz-element-inner {
+        @apply line-clamp-2;
+    }
+
+    .swatch-wrapper {
+        @apply py-2;
+
+        .swatch-option {
+            @apply m-1;
+        }
+
+        .size .swatch-option {
+            @apply items-center px-3 py-[7px];
+        }
+    }
+
+    .color .swatch-option {
+        @apply w-[30px] h-[30px];
+    }
+}
+
+/* hyva slider navigation */
+.hyva-slider {
+    &:hover .slider-navigation{
+        @screen lg {
+            @apply opacity-100;
+        }
+    }
+
+    .slider-navigation {
+        @apply transition-opacity duration-300 ease-[ease-in-out];
+
+        @screen lg {
+            @apply opacity-0;
+        }
+    }
+}
+
+/* hyva product widget (splide) */
+.splide {
+    .product-item-actions + .product-item-actions {
+        @apply hidden;
+    }
+}
+
+.splide:hover .splide__arrows {
+    @screen lg {
+        @apply opacity-100;
+    }
+}
+
+.splide:hover .splide__pagination {
+    @screen lg {
+        @apply opacity-100;
+    }
+}
+
+.splide__arrows {
+    @apply transition-opacity duration-300 ease-[ease-in-out];
+
+
+    @screen lg {
+        @apply opacity-0;
+    }
+}
+
+.splide__pagination {
+    @apply transition-opacity duration-300 ease-[ease-in-out];
+ 
+
+    @screen lg {
+        @apply opacity-0;
+    }
+}
+
+.splide__arrows {
+    .splide__arrow {
+        @apply w-9 h-9 rounded-full md:w-11 md:h-11 md:rounded-md bg-white shadow-md opacity-100;
+
+        @screen md {
+            @apply w-11 h-11 rounded-md;
+        }
+
+        @screen sm-max {
+            @apply opacity-100;
+        }
+
+        &:hover {
+            @apply opacity-100;
+        }
+
+        svg {
+            @apply hidden;
+        }
+
+        &:after {
+            @apply w-5 h-5 block;
+
+            @screen md {
+                @apply w-6 h-6;
+            }
+        }
+    }
+
+    .splide__arrow--prev {
+        @apply left-2;
+
+        @screen md {
+            @apply left-10;
+        }
+
+        &:after {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.3487 6.2762C15.6932 6.6345 15.6821 7.20424 15.3238 7.54875L10.5985 12L15.3238 16.4513C15.6821 16.7958 15.6932 17.3655 15.3487 17.7238C15.0042 18.0821 14.4345 18.0933 14.0762 17.7487L8.67618 12.6488C8.49971 12.4791 8.39997 12.2448 8.39997 12C8.39997 11.7552 8.49971 11.5209 8.67618 11.3513L14.0762 6.25125C14.4345 5.90674 15.0042 5.91791 15.3487 6.2762Z' fill='%23374151'/%3E%3C/svg%3E");
+        }
+
+        &:hover:after {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.3487 6.2762C15.6932 6.6345 15.6821 7.20424 15.3238 7.54875L10.5985 12L15.3238 16.4513C15.6821 16.7958 15.6932 17.3655 15.3487 17.7238C15.0042 18.0821 14.4345 18.0933 14.0762 17.7487L8.67618 12.6488C8.49971 12.4791 8.39997 12.2448 8.39997 12C8.39997 11.7552 8.49971 11.5209 8.67618 11.3513L14.0762 6.25125C14.4345 5.90674 15.0042 5.91791 15.3487 6.2762Z' fill='%23BE1F93'/%3E%3C/svg%3E");
+        }
+    }
+
+    .splide__arrow--next {
+        @apply right-2;
+
+        @screen md {
+            @apply right-10;
+        }
+
+        &:after {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.65125 17.7238C8.30673 17.3655 8.3179 16.7958 8.6762 16.4512L13.4015 12L8.6762 7.54875C8.3179 7.20424 8.30673 6.6345 8.65124 6.2762C8.99576 5.91791 9.5655 5.90674 9.92379 6.25125L15.3238 11.3512C15.5003 11.5209 15.6 11.7552 15.6 12C15.6 12.2448 15.5003 12.4791 15.3238 12.6487L9.92379 17.7487C9.5655 18.0933 8.99576 18.0821 8.65125 17.7238Z' fill='%23374151'/%3E%3C/svg%3E");
+        }
+
+        &:hover:after {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.65125 17.7238C8.30673 17.3655 8.3179 16.7958 8.6762 16.4512L13.4015 12L8.6762 7.54875C8.3179 7.20424 8.30673 6.6345 8.65124 6.2762C8.99576 5.91791 9.5655 5.90674 9.92379 6.25125L15.3238 11.3512C15.5003 11.5209 15.6 11.7552 15.6 12C15.6 12.2448 15.5003 12.4791 15.3238 12.6487L9.92379 17.7487C9.5655 18.0933 8.99576 18.0821 8.65125 17.7238Z' fill='%23BE1F93'/%3E%3C/svg%3E");
+        }
+    }
+}
+
+.splide__pagination {
+    @apply p-0;
+
+    li {
+        @apply p-0;
+    }
+
+    .splide__pagination__page {
+        @apply w-2 h-2 md:w-2.5 md:h-2.5 lg:w-3 lg:h-3 m-0 opacity-100;
+
+        &.is-active {
+            @apply shadow-[0px_0px_0px_3px] shadow-primary;
+            transform: none;
+        }
+    }
+}

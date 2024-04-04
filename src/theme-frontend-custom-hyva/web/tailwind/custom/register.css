@@ -1,0 +1,51 @@
+.customer-account-create {
+    fieldset .field.required > .label {
+        &:after {
+            @apply text-base text-red-darker;
+            content: "*";
+        }
+    }
+
+    fieldset ~ fieldset {
+        @apply mt-0;
+    }
+
+    form .field.choice,
+    fieldset .field.choice {
+        ~ .field.choice {
+            @apply border-t border-neutral-200 pt-4;
+        }
+
+        &:last-child {
+            @apply mb-0;
+        }
+
+        [type="checkbox"] {
+            @apply mr-2 rounded text-primary;
+
+            &:focus {
+                @apply ring-0;
+            }
+        }
+    }
+
+    #password-strength-meter-container {
+        @apply w-full text-left mt-1;
+    }
+
+    .social-login-list {
+        @apply hidden;
+    }
+
+    .form .otp-wrapper > .field {
+        @apply w-auto mb-0;
+    }
+
+    .field-telephone .control > span {
+        @apply left-5;
+    }
+
+    .field-telephone .control > input[type="text"] {
+        @apply pl-[55px] leading-3;
+    }
+}

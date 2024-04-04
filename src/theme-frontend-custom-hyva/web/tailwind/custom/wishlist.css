@@ -1,0 +1,26 @@
+.wishlist-index-index .product-item-link {
+    @apply overflow-hidden text-left;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.wishlist-index-index .price-configured_price .price-as-configured {
+    @apply flex items-baseline gap-[5px];
+}
+
+.wishlist-index-index .price-configured_price .price-as-configured .special-price {
+    @apply order-1;
+}
+
+.wishlist-index-index .price-configured_price .price-as-configured .old-price {
+    @apply order-none;
+}
+
+.wishlist-index-index .price-configured_price .price-as-configured .price-label {
+    @apply hidden;
+}
+
+.wishlist-index-index .price-configured_price .price-as-configured .old-price .price {
+    @apply line-through;
+}

@@ -1,0 +1,99 @@
+form .field.field-reserved,
+fieldset .field.field-reserved {
+    @apply mt-0 mb-[1.3rem];
+}
+form fieldset .field.field-reserved .field-error{
+    @apply text-[#e02b27];
+}
+.fieldset>.field.required>.label:after,
+.fieldset>.fields>.field.required>.label:after,
+.fieldset>.field._required>.label:after,
+.fieldset>.fields>.field._required>.label:after {
+    @apply content-['*'] text-[#e02b27] text-sm ml-[5px] mr-0 my-0;
+}
+form label, fieldset label {
+    @apply font-bold;
+}
+.fieldset>.field.choice .label,
+.fieldset>.fields>.field.choice .label {
+    @apply font-normal;
+}
+.fieldset>.field.country select#country {
+    @apply w-full max-w-lg border border-gray-300 rounded-md shadow-sm;
+
+    &:focus {
+        @apply border-primary-lighter ring ring-primary ring-opacity-50;
+    }
+}
+.map-wrapper {
+    @apply fixed w-full h-full z-[903] bg-[rgba(0,0,0,0.8)] left-0 top-0;
+}
+.map-wrapper.noshow {
+    @apply top-[-2000px];
+}
+.map-wrapper .map-wrapper-box {
+    @apply absolute w-3/5 mx-[20%] my-[5%] p-[25px];
+    background: #fff;
+}
+.map-wrapper-box .action-button {
+    @apply static;
+}
+.map-wrapper-box .action-button.close-map .close {
+    @apply absolute text-[0] m-0 p-0 right-[25px] top-[15px];
+    background: 0 0;
+}
+.map-wrapper-box .map-top-info {
+    @apply text-center;
+}
+.map-wrapper-box .map-top-info>h1 {
+    @apply font-bold;
+}
+.map-wrapper-box #searchInput {
+    @apply bg-white text-[13px] font-light text-ellipsis w-full h-[35px] shadow-[unset] mt-0 mb-2.5 mx-0 px-[15px] py-[3px];
+}
+#map {
+    @apply w-full h-[300px];
+}
+#geoData {
+    @apply hidden;
+}
+.map-wrapper-box .action-button.confirm-button {
+    @apply text-center pt-5;
+}
+.map-wrapper-box .action-button a {
+    @apply inline-block mx-[5px] my-0 px-5 py-2.5;
+}
+#form-validate input::-webkit-outer-spin-button,
+#form-validate input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#form-validate input[type=number] {
+    -moz-appearance: textfield;
+}
+#form-validate .field-error input.form-input {
+    @apply bg-red-50 border border-red-500 text-red-900 placeholder-red-700;
+}
+#form-validate input::placeholder {
+    @apply text-xs text-[#9ca3af];
+}
+
+@screen sm-max {
+    .map-wrapper .map-wrapper-box {
+        @apply w-[98%] m-[1%] p-2.5;
+    }
+
+    .map-wrapper-box .map-top-info>h1 {
+        @apply text-xl leading-[1.2] font-bold pb-5;
+    }
+
+    .map-wrapper-box .map-top-info>p {
+        @apply text-sm m-0 px-0 py-5;
+    }
+}
+
+@screen md-range {
+    #form-validate .address .pinmap-button {
+        @apply text-[10px];
+    }
+}
